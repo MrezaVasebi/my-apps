@@ -1,12 +1,17 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 export const useTodo = () => {
 
     const [task, setTask] = useState('')
     const [tasks, setTasks] = useState([])
+    const [priority, setPriority] = useState('Low')
 
-    const addingTodo = (value) => {
+    const addingTaskToTodoList = (value) => {
         setTask(value)
+    }
+
+    const addingPriorityToTask = (priorityName) => {
+        setPriority(priorityName)
     }
 
     const handleActionOnTask = (actionType, id) => {
@@ -27,22 +32,20 @@ export const useTodo = () => {
             id: tasks.length === 0 ? 1 : tasks[tasks.length - 1].id + 1,
             label: task,
             isDone: false,
-            isDeleted: false
+            priority: priority,
         }])
 
         setTask('')
+        setPriority('Low')
     }
-
-    useEffect(() => {
-        console.log({ tasks })
-    }, [tasks])
 
     return {
         task,
         tasks,
         setTask,
-        addingTodo,
         handleTodoApp,
         handleActionOnTask,
+        addingPriorityToTask,
+        addingTaskToTodoList,
     }
 }

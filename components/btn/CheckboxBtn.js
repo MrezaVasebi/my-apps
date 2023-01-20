@@ -12,7 +12,7 @@ const CheckboxBtn = ({ onPress, item, ...props }) => {
             activeOpacity={.5}
             style={{ ...styles.container, }}
         >
-            {item.isDone && <AntDesign name="check" size={15} color="black" />}
+            {item.isDone && <AntDesign name="check" size={15} color={appColors.black} />}
         </TouchableOpacity>
     )
 }

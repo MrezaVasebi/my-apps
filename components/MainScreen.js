@@ -6,7 +6,7 @@ import { appColors } from '../constant'
 const MainScreen = ({ children, rootStyle }) => {
     return (
         <View style={{ ...styles.root, ...rootStyle }} >
-            <StatusBar hidden={false} barStyle='dark-content' backgroundColor={appColors.primary} />
+            <StatusBar hidden={true} barStyle='dark-content' backgroundColor={appColors.primary} />
             {children}
         </View>
     )

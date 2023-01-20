@@ -1,9 +1,12 @@
 export const appColors = {
     black: 'black',
+    white: 'white',
     primary: '#f1faee',
     txtColor: '#52796f',
     secondary: '#0a9396',
     txtColor_one: '#d9d9d9',
+    yellow: '#FFC93C',
+    orange: '#FF7B54',
 }
 
 export const appMargin = {
