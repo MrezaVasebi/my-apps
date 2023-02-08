@@ -7,7 +7,8 @@ export const useTodo = () => {
     const [priority, setPriority] = useState('Low')
 
     const addingTaskToTodoList = (value) => {
-        setTask(value)
+        if (value.length === 0) return
+        else setTask(value)
     }
 
     const addingPriorityToTask = (priorityName) => {

@@ -1,11 +1,11 @@
 import { MainScreen } from './components'
 import React from 'react'
-import { Todo } from './screen/todo'
+import Recursive from './screen/recursive/Recursive'
 
 const App = () => {
   return (
     <MainScreen>
-      <Todo />
+      <Recursive />
     </MainScreen>
   )
 }
