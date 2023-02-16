@@ -27,7 +27,7 @@ const TodoCard = ({ onPress, item }) => {
                 <AppText
                     lblStyle={{
                         fontSize: 13,
-                        color: appColors.white,
+                        color: appColors.black,
                         textDecorationLine: item.isDone ? 'line-through' : 'none',
                     }}
                     label={item.label}

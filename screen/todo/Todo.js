@@ -1,12 +1,13 @@
-import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { MainScreen, NoData } from '../../components'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { appColors, appRadius } from '../../constant'
 
 import { AppButton } from '../../components/btn'
 import { AppInput } from '../../components/inputs'
 import { AppText } from '../../components/txt'
+import { DateModal } from '../modals'
+import { Fontisto } from '@expo/vector-icons';
 import React from 'react'
-import { TodoCard } from './components'
 import { useTodo } from './logic'
 
 const Todo = () => {
@@ -34,25 +35,31 @@ const Todo = () => {
                 />
 
                 <AppInput
-                    value={hooks.task}
+                    value={hooks.state.taskName}
                     style={styles.inputStyle}
                     onChangeText={(value) => hooks.addingTaskToTodoList(value)}
                 />
             </View>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }} >
-                {priorityCompo('Low', { backgroundColor: appColors.yellow })}
-                {priorityCompo('Medium', { backgroundColor: appColors.secondary })}
-                {priorityCompo('High', { backgroundColor: appColors.orange })}
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, justifyContent: 'space-between' }} >
+                <View style={{ flexDirection: 'row' }} >
+                    {priorityCompo('Low', { backgroundColor: appColors.yellow })}
+                    {priorityCompo('Medium', { backgroundColor: appColors.secondary })}
+                    {priorityCompo('High', { backgroundColor: appColors.orange })}
+                </View>
+
+                <TouchableOpacity onPress={() => hooks.handleShowDateModal(true)} >
+                    <Fontisto name="date" size={24} color="black" />
+                </TouchableOpacity>
             </View>
 
             <View style={{ flex: 1 }}>
-                {hooks.tasks.length === 0 && <View style={styles.noDataContainer} ><NoData /></View>}
+                {hooks.state.tasksList.length === 0 && <View style={styles.noDataContainer} ><NoData /></View>}
 
-                {
-                    hooks.tasks.length !== 0 &&
+                {/* {
+                    hooks.state.tasks.length !== 0 &&
                     <FlatList
-                        data={hooks.tasks}
+                        data={hooks.state.tasks}
                         keyExtractor={(item, index) => index.toString()}
                         ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
                         renderItem={({ item: value }) => {
@@ -61,8 +68,15 @@ const Todo = () => {
                             />
                         }}
                     />
-                }
+                } */}
             </View>
+
+            {
+                hooks.state.showDateModal &&
+                <DateModal onSelectDate={hooks.handleShowDateModal}
+                    closeModal={hooks.handleShowDateModal}
+                />
+            }
         </MainScreen>
     )
 }
