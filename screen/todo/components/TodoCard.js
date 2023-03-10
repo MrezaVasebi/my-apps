@@ -8,17 +8,14 @@ import React from 'react'
 
 const TodoCard = ({ onPress, item }) => {
 
-    const handleBorderColor = () => {
+    const handleBackColor = () => {
         if (item.priority === 'Low') return appColors.yellow
         if (item.priority === 'Medium') return appColors.secondary
         if (item.priority === 'High') return appColors.orange
     }
 
     return (
-        <View style={[styles.container, {
-            borderBottomColor: handleBorderColor(),
-            backgroundColor: handleBorderColor(),
-        }]} >
+        <View style={[styles.container]} >
             <TouchableOpacity onPress={() => onPress('isDeleted', item.id)} >
                 <AntDesign name="delete" size={20} color="black" />
             </TouchableOpacity>
@@ -32,6 +29,10 @@ const TodoCard = ({ onPress, item }) => {
                     }}
                     label={item.label}
                 />
+
+                <View style={[styles.priorityContainer, {
+                    backgroundColor: handleBackColor(),
+                }]} />
             </View>
 
             <CheckboxBtn item={item}
@@ -47,6 +48,7 @@ const styles = StyleSheet.create({
         padding: 5,
         height: 45,
         elevation: 1,
+        borderWidth: .5,
         alignItems: 'center',
         borderRadius: appRadius.s,
         flexDirection: 'row-reverse',
@@ -55,6 +57,14 @@ const styles = StyleSheet.create({
     },
     txtStyle: {
         flex: 1,
-        marginHorizontal: 8
+        marginHorizontal: 8,
+        alignItems: 'center',
+        flexDirection: 'row',
+    },
+    priorityContainer: {
+        width: 8,
+        height: 8,
+        marginLeft: 5,
+        borderRadius: 4,
     }
 })
